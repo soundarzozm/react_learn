@@ -1,12 +1,33 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-class Header extends React.Component{
+// let styles = {
+//     header: {background: '#03a9fa'},
+//     logo: {
+//         color: '#fff',
+//         fontFamily: 'Roboto Mono',
+//         textAlign: 'center'
+//     }
+// }
+
+class Header extends Component{
+
+    state = {
+        keywords: ""
+    }
+
+    inputChangeHandler = (event) => {
+        this.setState({
+            keywords: event.target.value
+        })
+    }
 
     render(){
         return(
             <header>
-                <div>Logo</div>
-                <input/>
+                <div className="logo">Logo</div>
+                <input
+                    onChange = {this.inputChangeHandler}
+                />
             </header>
         )
     }
