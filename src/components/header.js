@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 
 // let styles = {
 //     header: {background: '#03a9fa'},
@@ -9,34 +9,15 @@ import React, {Component} from 'react';
 //     }
 // }
 
-class Header extends Component{
-
-    state = {
-        active: false,
-        keywords: ""
-    }
-
-    inputChangeHandler = (event) => {
-
-        const value = event.target.value === '' ? false : true;
-
-        this.setState({
-            active: value,
-            keywords: event.target.value
-        })
-    }
-
-    render(){
-
-        return(
-            <header style={{background: `${this.state.active ? 'red' : 'blue'}`}}>
-                <div className="logo">Logo</div>
-                <input
-                    onChange = {this.inputChangeHandler}
-                />
-            </header>
-        )
-    }
+const Header = (props) => {
+    return(
+        <header>
+            <div className="logo">Logo</div>
+            <input
+                onChange = {props.keywords}
+            />
+        </header>
+    )
 }
 
 export default Header;
