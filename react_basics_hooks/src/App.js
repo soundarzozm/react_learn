@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
+import Post from './post';
 
 // read the prop
 const App = ({initialCount}) => {
@@ -46,6 +47,28 @@ const App = ({initialCount}) => {
     ])
   }
 
+  // function to remove all the posts
+  const removePosts = () => {
+    setPosts([])
+  }
+
+  // alternative for lifecycles
+  // based on where you place it and the parameters you pass, you can reproduce any life-cycle
+  // runs every time there is an update
+  useEffect(()=>{
+    //console.log('useEffect')
+  })
+
+  // way to listen to updates on a specific property (state here)
+  useEffect(()=>{
+    //console.log('change on state')
+  }, [state])
+
+  // way to use as componentDidMount
+  useEffect(()=>{
+    //console.log('mounted')
+  }, [])
+
   return(
     <>
       <h1>{state.user}</h1>
@@ -59,19 +82,15 @@ const App = ({initialCount}) => {
         Rest one -1
       </button>
 
-      <button onClick={() => setState({...state, count: initialCount})}>
-        Reset
+      <button onClick={removePosts}>
+        Remove Posts
       </button>
 
       <hr/>
 
       {/* idk javascript */}
       {posts.map((item, i)=>(
-        <div key={i}>
-          <div>Name: {item.name}</div>
-          <div>Body: {item.body}</div>
-          <hr/>
-        </div>
+        <Post item={item} key={i}/>
       ))}
 
       <button onClick={addOnePost}>
