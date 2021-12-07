@@ -1,37 +1,32 @@
-import React, {useState, useCallback} from 'react';
-import Title from './components/title';
-import Count from './components/count';
-import Age from './components/age';
-import CountBtn from './components/countBtn';
-import AgeBtn from './components/ageBtn';
+import React, {Component} from 'react';
 
-const App = () => {
+class App extends Component {
 
-  // initialize states with useState
-  const [count, setCount] = useState(0);
-  const [age, setAge] = useState(10);
+  constructor(props){
+    super(props);
+    this.textInput = React.createRef();
+  }
 
-  // useCallback listens to props in the array and updates only if the props change
-  // here we are not listening to any props and we are just incrementing the prev prop directly
-  // so the function is the same for memo hence it does not re-render
-  const incrementCount = useCallback(() => {
-    setCount(prevCount => prevCount+1)
-  }, []) 
+  triggerHandler = () => {
+    console.log(this.textInput.current.value);
+  }
 
-  // same as above
-  const incrementAge = useCallback(() => {
-    setAge(prevAge => prevAge+1)
-  }, [])
+  render(){
+    return(
+      <>
+        
+        <h1>Form:</h1>
+        
+        <input type="text" ref={this.textInput}/>
+        
+        <button onClick={this.triggerHandler}>
+          Trigger
+        </button>
+      
+      </>
+    )
+  }
 
-  return(
-    <>
-      <Title/>
-      <Count count={count}/>
-      <Age age={age}/>
-      <CountBtn countHandler={incrementCount}/>
-      <AgeBtn ageHandler={incrementAge}/>
-    </>
-  )
 }
 
 export default App;
