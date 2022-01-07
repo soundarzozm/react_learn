@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
+import {BrowserRouter, Redirect, Route, Switch} from 'react-router-dom';
 // MemoryRouter, HashRouter
 
 import Header from './components/header';
@@ -16,6 +16,7 @@ const App = () => {
         
         <div className="container">
           <Switch>
+            {/* <Redirect from='/profile' to='/'/> */}
             <Route path="/posts/:id" exact component={PostItem}/>
             <Route path="/posts" exact component={Post}/>
             <Route path="/profile" exact component={Profile}/>
