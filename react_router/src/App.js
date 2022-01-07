@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import Home from './components/home';
 import Post from './components/posts';
+import PostItem from './components/post_item';
 import Profile from './components/profile';
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <div className="container">
           <Route path="/" exact component={Home}/>
           <Route path="/posts" exact component={Post}/>
+          <Route path="/posts/:id" exact component={PostItem}/>
           <Route path="/profile" exact component={Profile}/>
         </div>
     </BrowserRouter>
