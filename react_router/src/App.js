@@ -21,6 +21,9 @@ const App = () => {
             <Route path="/posts" exact component={Post}/>
             <Route path="/profile" exact component={Profile}/>
             <Route path="/" exact component={Home}/>
+            <Route render={()=>(
+              <h3>Oops, page not found :(</h3>
+            )}/>
           </Switch>
           
         </div>
