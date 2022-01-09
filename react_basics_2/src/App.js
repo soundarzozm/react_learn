@@ -6,6 +6,8 @@ import Header from './components/header'
 import PureComp from './components/pure_component'
 import PureCompF from './components/pure_component_func'
 import AdjEle from './components/adjacent_element'
+import Profile from './components/proifle'
+import User from './components/user'
 
 const App = () => {
   return(
@@ -16,6 +18,8 @@ const App = () => {
           <Route path='/purecomp' component={PureComp}/>
           <Route path="/purecompf" component={PureCompF}/>
           <Route path="/adjele" component={AdjEle}/>
+          <Route path="/profile" component={Profile}/>
+          <Route path="/user" component={User}/>
           <Route path="/" component={Home}/>
         </Switch>
       </div>
