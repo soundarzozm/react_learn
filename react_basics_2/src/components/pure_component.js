@@ -1,10 +1,17 @@
-import React, { Component } from "react"
+import React, { PureComponent } from "react"
 
-class PureComp extends Component{
+class PureComp extends PureComponent{
 
     state = {
         name: "Francis"
     }
+
+    // shouldComponentUpdate(nextProps, nextState){
+    //     if(nextState.name === this.state.name){
+    //         return false
+    //     }
+    //     return true
+    // }
 
     render(){
         console.log('render')
