@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
 
-const Home = () => {
+import {moviesList} from '../store/actions/index'
 
-    return(
-        <>
-            Home
-        </>
-    )
+class Home extends Component {
+
+    getMoviesHandler(){
+        this.props.dispatch(moviesList())
+    }
+
+    render(){
+        console.log(this.props)
+        return(
+            <>
+                <button onClick={()=>this.getMoviesHandler()}>
+                    Get movies
+                </button>
+            </>
+        )
+    }
 }
 
-export default Home;
+export default connect()(Home);
