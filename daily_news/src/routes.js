@@ -1,16 +1,19 @@
-import React from "react"
+import React from 'react'
 import {Switch, Route, BrowserRouter} from 'react-router-dom'
 
-import Home from "./components/home"
+import MainLayout from './hoc/main_layout'
+import Home from './components/home'
+import Header from './components/header'
 
-const Routes = () => {
-    return (
-        <BrowserRouter>
+const Routes = () => (
+    <BrowserRouter>
+        <Header/>
+        <MainLayout>
             <Switch>
                 <Route path="/" component={Home}/>
             </Switch>
-        </BrowserRouter>
-    )
-}
+        </MainLayout>
+    </BrowserRouter>
+)
 
 export default Routes
