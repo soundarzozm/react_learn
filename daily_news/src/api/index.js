@@ -17,3 +17,31 @@ export const getPosts = async(prevState, page=1, order="asc", limit=10) => {
     }
 
 }
+
+export const addNewsletter = async(data) => {
+    try{
+        const findUser = await axios.get(`${URL_SERV}/newsletter?email=${data.email}`)
+        if(!Array.isArray(findUser.data) || !findUser.data.length){
+            const response = await axios({
+                method: 'POST',
+                url: `${URL_SERV}/newsletter`,
+                data: {
+                    email: data.email
+                }
+            })
+
+            return {
+                newsletter: 'added',
+                email: response.data
+            }
+
+        } else {
+            return {
+                newsletter: 'failed'
+            }
+        }
+    }
+    catch(error){
+        throw error
+    }
+}
