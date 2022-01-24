@@ -2,7 +2,7 @@ import React, {useEffect, useState} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {getPosts} from '../../store/actions'
 
-import {Spinner, Button, NavItem} from 'react-bootstrap'
+import {Spinner, Button} from 'react-bootstrap'
 import Masonry from 'react-masonry-css'
 import Moment from 'react-moment'
 import {LinkContainer} from 'react-router-bootstrap'
@@ -39,6 +39,7 @@ const HomePosts = () => {
                                 <img
                                     style = {{width: '100%', height:'200px'}}
                                     src = {item.image}
+                                    alt = ""
                                 />
                                 <div className='author'>
                                     <span>{item.author} - </span>

@@ -1,7 +1,7 @@
-import React, {useRef, useState, useEffect} from 'react'
+import React, {useRef, useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import {Form, Button} from 'react-bootstrap'
-import {addNewsletter} from '../../store/actions'
+import {addNewsletter, clearNewsletter} from '../../store/actions'
 import {showToast} from './tools'
 
 const Newsletter = () => {
@@ -22,9 +22,11 @@ const Newsletter = () => {
             if(userData.newsletter === 'added'){
                 showToast('SUCCESS', "Thank you for subscribing!")
                 textInput.current.value=""
+                dispatch(clearNewsletter())
             } else {
                 showToast('ERROR', "You have already subscribed!")
                 textInput.current.value=""
+                dispatch(clearNewsletter())
             }
         }
     }, [userData])
