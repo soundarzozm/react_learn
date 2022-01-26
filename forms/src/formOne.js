@@ -1,9 +1,11 @@
-import React from "react";
-import { Formik } from "formik";
+import React from 'react'
+import {Formik} from 'formik'
+import * as Yup from 'yup'
 
 const FormOne = () => {
   return (
     <Formik
+
       initialValues={{
         firstname: '',
         lastname: '',
@@ -12,30 +14,52 @@ const FormOne = () => {
         state: '',
         zip: ''
       }}
-      validate={values=>{
-        const errors = {}
 
-        if (!values.firstname){
-          errors.firstname = 'Sorry, this is required.'
-        }
+      // validate={values=>{
+      //   const errors = {}
 
-        if (!values.lastname){
-          errors.lastname = 'Sorry, this is required.'
-        }
+      //   if (!values.firstname){
+      //     errors.firstname = 'Sorry, this is required.'
+      //   }
 
-        if (!values.email){
-          errors.email = 'Sorry, this is required.'
-        }
+      //   if (!values.lastname){
+      //     errors.lastname = 'Sorry, this is required.'
+      //   }
 
-        if (!values.zip){
-          errors.zip = 'Sorry, this is required.'
-        }
+      //   if (!values.email){
+      //     errors.email = 'Sorry, this is required.'
+      //   }
 
-        return errors
-      }}
+      //   if (!values.zip){
+      //     errors.zip = 'Sorry, this is required.'
+      //   }
+
+      //   return errors
+      // }}
+
+      validationSchema={Yup.object({
+        
+        firstname: Yup
+        .string()
+        .required('Sorry, this is required.')
+        .min(3, 'Sorry, the name is too short'),
+
+        lastname: Yup
+        .string()
+        .required('Sorry, this is required.')
+        .min(3, 'Sorry, the name is too short'),
+
+        email: Yup
+        .string()
+        .required('Sorry, this is required.')
+        .email('Sorry, the email ID is invalid'),
+      
+      })}
+
       onSubmit={(values)=>{
         console.log(values)
       }}
+
     >
       {({
         values,
