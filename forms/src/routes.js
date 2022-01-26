@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
-import { Switch, Route, BrowserRouter } from 'react-router-dom';
+import React, {Component} from 'react'
+import {Switch, Route, BrowserRouter} from 'react-router-dom'
 
-import Header from './header';
-import FormOne from './formOne';
-import FormTwo from './formtwo';
-import FormThree from './formThree';
+import Header from './header'
+import FormOne from './formOne'
+import FormTwo from './formtwo'
+import FormThree from './formThree'
 
 class Routes extends Component {
 
@@ -22,4 +22,4 @@ class Routes extends Component {
     }
 }
 
-export default Routes;
+export default Routes
