@@ -55,3 +55,17 @@ export const getPostByID = async(id) => {
         return '404'
     }
 }
+
+export const sendMessage = async(data) => {
+    try{
+        const response = await axios({
+            method: 'POST',
+            url: `${URL_SERV}/contact`,
+            data: data
+        })
+        return true
+    }
+    catch(error){
+        return false
+    }
+}
