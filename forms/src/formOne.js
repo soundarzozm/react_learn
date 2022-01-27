@@ -75,6 +75,7 @@ const FormOne = () => {
               <h4 className="mb-3">Personal information</h4>
 
               <div className="row">
+
                 <div className="col-md-6 mb-3">
                   <label htmlFor="firstname">First name</label>
                   <input
@@ -92,6 +93,7 @@ const FormOne = () => {
                   </span> 
                   : null}
                 </div>
+
                 <div className="col-md-6 mb-3">
                   <label htmlFor="lastname">Last name</label>
                   <input
@@ -131,6 +133,7 @@ const FormOne = () => {
               </div>
 
               <div className="row">
+
                 <div className="col-md-5 mb-3">
                   <label htmlFor="country">Country</label>
                   <select
@@ -147,6 +150,7 @@ const FormOne = () => {
                     <option value="NL">Netherlands</option>
                   </select>
                 </div>
+
                 <div className="col-md-4 mb-3">
                   <label htmlFor="state">State</label>
                   <select
@@ -183,6 +187,7 @@ const FormOne = () => {
               </div>
 
               <hr className="mb-4" />
+              
               <button
                 className="btn btn-primary btn-lg btn-block"
                 type="submit"
