@@ -5,13 +5,17 @@ import * as Yup from 'yup'
 const FormThree = () => {
 
     const formikProps = {
-        initialValues: {firstname: '', color: ''},
+        initialValues: {firstname: '', color: '', lastname: ''},
         validationSchema: Yup.object({
             firstname: Yup
             .string()
             .required('Sorry, this is required.'),
 
             color: Yup
+            .string()
+            .required('Sorry, this is required.'),
+
+            lastname: Yup
             .string()
             .required('Sorry, this is required.')
         }),
@@ -20,10 +24,32 @@ const FormThree = () => {
         }
     }
 
+    const lastnameCustomField = ({
+        field,
+        form: {touched, errors},
+        ...props
+    }) => (
+        <>
+            <label htmlFor={field.name}>Last name</label>
+            <input
+                type='text'
+                className='form-control'
+                {...field}
+                placeholder={props.placeholder}
+            />
+            {
+                errors[field.name] && touched[field.name] ?
+                <span>{errors[field.name]}</span>
+                : null
+            }
+        </>
+    )
+
     return(
 
         <Formik {...formikProps}>
-            <div className="container">
+            {formik => (
+                <div className="container">
                 <div className="col-md-12 mt-5">
                     <Form>
                         <label htmlFor="firstname">First name</label>
@@ -51,6 +77,18 @@ const FormThree = () => {
                             <option value='green'>Green</option>
                             <option value='blue'>Blue</option>
                         </Field>
+                        {
+                            formik.errors.color ? 
+                            <span>{formik.errors.color}</span>
+                            : null
+                        }
+                        <hr className="mb-4" />
+
+                        <Field
+                            name='lastname'
+                            component={lastnameCustomField}
+                            placeholder='Last Name'
+                        />
 
                         <hr className="mb-4" />
 
@@ -59,7 +97,8 @@ const FormThree = () => {
                         </button>
                     </Form>
                 </div>
-            </div>
+                </div>
+            )} 
         </Formik>
     )
 }
