@@ -7,7 +7,7 @@ const bodyParser = require('body-parser')
 ////////////////////////////////////////////
 // MONGOOSE
 const creds = require('./creds')
-const mongoUri = `mongodb+srv://${creds.mongoUsername}:${creds.mongoPass}@cluster0.hicjz.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
+const mongoUri = `mongodb+srv://${creds.mongoUsername}:${creds.mongoPass}@cluster0.hicjz.mongodb.net/myApp?retryWrites=true&w=majority`
 
 mongoose.connect(mongoUri, {
     useNewUrlParser: true,
@@ -48,7 +48,38 @@ app.post('/api/addcar', (req, res)=>{
     
     addCar.save((err, doc)=>{
         if(err) return console.log(err)
-        console.log(doc)
+        res.status(200).json(doc)
+    })
+})
+
+app.get('/api/getcars', (req, res)=>{
+    Car.find({}, (err, doc)=>{
+        if(err) return console.log(err)
+        res.json(doc)
+    })
+})
+
+app.post('/api/removecar', (req, res)=>{
+    
+    const brand = req.body.brand
+
+    Car.findOneAndRemove({brand: brand}, (err, doc)=>{
+        if(err) return console.log(err)
+        res.json(doc)
+    })
+})
+
+app.post('/api/updatecar', (req, res)=>{
+    
+    const brand = req.body.brand
+
+    Car.findOneAndUpdate(
+        {brand: brand}, 
+        {$set: {brand: 'Ford'}},
+        {new: true}, //otherwise response doc is before update one
+        (err, doc)=>{
+        if(err) return console.log(err)
+        res.json(doc)
     })
 })
 ////////////////////////////////////////////

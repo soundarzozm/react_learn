@@ -14,26 +14,82 @@ class App extends Component {
   //   })
   // }
   
+  state = {
+    cars: []
+  }
+
+  componentDidMount(){
+    this.getCars()
+  }
+
+  getCars(){
+    axios.get('/api/getcars')
+    .then(response=>{
+      this.setState({
+        cars: response.data
+      })
+    })
+  }
+
+  onCarRemove(){
+    axios.post('/api/removecar', {
+      brand: 'Ford'
+    })
+    .then(response=>{
+      this.getCars()
+    })
+  }
+
   onSubmitCar(){
     axios.post('/api/addcar', {
-      brand: 'Maruti Suzuki',
-      model: 'WagonR Duo',
-      year: 2009,
+      brand: 'Honda',
+      model: 'Civic',
+      year: 2007,
       avail: false
     })
     .then(response=>{
       console.log(response.data)
+      this.getCars()
+    })
+  }
+
+  onCarUpdate(){
+    axios.post('/api/updatecar', {
+      brand: 'Honda'
+    })
+    .then(response=>{
+      this.getCars()
     })
   }
 
   render(){
     return (
       <div className='App'>
+        
         <button
           onClick = {()=>this.onSubmitCar()}
         >
-          Add user
+          Add car
         </button>
+
+        <button
+          onClick = {()=>this.onCarRemove()}
+        >
+          Remove car
+        </button>
+
+        <button
+          onClick = {()=>this.onCarUpdate()}
+        >
+          Update car
+        </button>
+
+        {
+          this.state.cars.map((car)=>(
+            <div>- {car.brand}</div>
+          ))
+        }
+
       </div>
     )
   }
