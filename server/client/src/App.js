@@ -14,11 +14,24 @@ class App extends Component {
   //   })
   // }
   
+  addUser(){
+    axios.get('/api/users')
+    .then(response=>{
+      console.log(response.data)
+    }).catch(()=>{
+      console.log('crap')
+    })
+  }
+
   render(){
     return (
-      <>
-        Hello World!
-      </>
+      <div className='App'>
+        <button
+          onClick = {()=>this.addUser()}
+        >
+          Add user
+        </button>
+      </div>
     )
   }
 }
