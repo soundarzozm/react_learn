@@ -14,12 +14,15 @@ class App extends Component {
   //   })
   // }
   
-  addUser(){
-    axios.get('/api/users')
+  onSubmitCar(){
+    axios.post('/api/addcar', {
+      brand: 'Maruti Suzuki',
+      model: 'WagonR Duo',
+      year: 2009,
+      avail: false
+    })
     .then(response=>{
       console.log(response.data)
-    }).catch(()=>{
-      console.log('crap')
     })
   }
 
@@ -27,7 +30,7 @@ class App extends Component {
     return (
       <div className='App'>
         <button
-          onClick = {()=>this.addUser()}
+          onClick = {()=>this.onSubmitCar()}
         >
           Add user
         </button>
